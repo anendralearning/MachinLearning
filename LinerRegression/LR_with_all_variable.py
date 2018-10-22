@@ -1,6 +1,6 @@
 import numpy as np
 import pandas as pd
-# import matplotlib.pyplot as plt
+import matplotlib.pyplot as plt
 
 from sklearn.model_selection import train_test_split
 from sklearn.linear_model import LinearRegression
@@ -42,10 +42,18 @@ pred_cv = lreg.predict(x_cv)
 
 #calculating mse
 mse = np.mean((pred_cv - y_cv)**2)
-print(mse)
+print("mse",mse)
 
 #calculating R-square
 r2 = lreg.score(x_cv,y_cv)
-print(r2)
+print("R-Squared",r2)
 
+#Residual plot
+x_plot = plt.scatter(pred_cv,(pred_cv - y_cv), c='b')
+
+plt.hlines(y=0,xmin=-1000,xmax=5000)
+
+plt.title("Residual Plot")
+
+plt.show()
 
